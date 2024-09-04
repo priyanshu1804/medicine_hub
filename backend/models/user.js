@@ -1,62 +1,37 @@
 const mongoose=require('mongoose');
-const bcrypt=require('bcrypt');
+const bcrypt = require('bcrypt');
 const userSchema=new mongoose.Schema({
     name:{
-        type:String,
-        required:true
+        type:String
     },
     email:{
         type:String,
-        required:true,
-        unique:true
-    },
-    mobile:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    username:{
-        type:String,
-        require:true,
-        unique:true
+        required:true
     },
     password:{
         type:String,
         require:true
-    },
-    role:{
-        type:String,
-        enum:['Buyer','Doner'],
-        default:'Buyer'
-    },
+    }
 });
 
-
-userSchema.pre('save',async function(next){
-    const user=this;
-    if(!user.isModified('password')){
-        return next();
-    }
-    try{
-        const salt= await bcrypt.genSalt(10);
-        const hashPassword=await bcrypt.hash(user.password,salt);
-        user.password=hashPassword;
-        next();
-    }catch(err){
-        return next(err);
+userSchema.pre('save',function(next){
+    if(this.isModified('password')){
+        bcrypt.hash(this.password,10,(err,hashed)=>{
+            if(err)return next(err);
+            this.password = hashed;
+            next();
+        })
     }
 })
-
-userSchema.methods.comparePassword=async function(password){
+userSchema.methods.comparePassword= async(password)=>{
+    if(!password)return new Error('password is empty');
     try{
-        const ismatch=await bcrypt.compare(password,this.password);
-        return ismatch;
-    }catch(err){
-        res.status(500).json({error:"internal server error"});
+        const result =await bcrypt.compare(password , this.password);
+        return result;
+    }catch(e){
+        console.log("errrroooorrr"+e);
     }
 }
-
-
 
 const User=mongoose.model('User',userSchema);
 module.exports=User;

@@ -16,13 +16,18 @@ const checkDonerRole = async (userID) => {
 }
 router.post('/',jwtAuthMiddleware,async(req, res) =>{
     try{
-        if(!(await checkDonerRole(req.user.id)))
-            return res.status(403).json({message: 'user does not have doner role'});
-
+        // if(!(await checkDonerRole(req.user.id)))
+        //     return res.status(403).json({message: 'user does not have doner role'});
+        
         const data = req.body
         const newMedicine = new Medicine(data);
+        
+        newMedicine.donatedBy = req.user.name;
+        console.log(req.user.name);
+
+        // newMedicine.donatedBy ="123908";
         const response = await newMedicine.save();
-        console.log('data saved');
+        console.log();
         res.status(200).json({response: response});
     }
     catch(err){
@@ -53,7 +58,7 @@ router.put('/:medicineID',jwtAuthMiddleware, async (req, res)=>{
     }
 })
 
-router.delete('/:medicineID',jwtAuthMiddleware, async (req, res)=>{
+router.delete('/:medicineID', async (req, res)=>{
     try{
         if(!(await checkDonerRole(req.user.id)))
             return res.status(403).json({message: 'user does not have doner role'});
@@ -70,21 +75,53 @@ router.delete('/:medicineID',jwtAuthMiddleware, async (req, res)=>{
         res.status(500).json({error: 'Internal Server Error'});
     }
 })
-router.get('/med', jwtAuthMiddleware, async (req, res) => {
+
+router.get('/info/:medicineID', jwtAuthMiddleware, async (req, res) => {
     try {
-        const medicineData = req.user;
-        console.log("medicine data:", medicineData);
-        const medicineName = req.query.name;
-        const medicine = await Medicine.find({ name: medicineName });
-        if (!medicine) {
-            return res.status(404).json({ error: "Medicine not found" });
-        }
-        res.status(200).json({ medicine: medicine });
+        const medId = req.params.medicineID;
+
+        const medicine = await Medicine.findOne({
+            _id:medId
+        });
+
+        res.json({
+            medicine
+        })
+       
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Internal server error" });
     }
 });
 
+router.get('/all',jwtAuthMiddleware, async (req,res)=>{
+        const filter = req. query.filter;
+        const data = await Medicine.find({
+        $or:[{
+            name:{$regex:filter}
+         },{
+             salt:{$regex:filter}
+         }]
+    });
+    const filterData = data.filter(med=>{
+        if(med.donatedBy!=req.user.name){
+            return true;
+        }
+        return false;
+    });
+   
+    console.log(filterData)
+    res.json({
+        data:filterData
+    })
+})
 
+router.get('/my',jwtAuthMiddleware,async (req,res)=>{
+    const data = await Medicine.find({
+        donatedBy: req.user.name
+    });
+    res.json({
+        data:data
+    })
+})
 module.exports = router;
