@@ -9,7 +9,7 @@ export default function Mymed(){
   const [med,setMed] = useState([]);
   useEffect(()=>{
     async function fetch(){
-      const {data} =await axios.get("http://localhost:3000/medicine/my",{
+      const {data} =await axios.get("https://medicine-hub-nu.vercel.app/medicine/my",{
         headers:{
           Authorization:localStorage.getItem('token')
         }

@@ -12,7 +12,7 @@ export default function Home(){
     async function fetch(){
       
       try{
-        const {data} =await axios.get(`http://localhost:3000/medicine/all?filter=${filter}`,{
+        const {data} =await axios.get(`https://medicine-hub-nu.vercel.app/medicine/all?filter=${filter}`,{
           headers:{
             Authorization:localStorage.getItem('token')
           }
