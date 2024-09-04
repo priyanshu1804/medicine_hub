@@ -13,8 +13,8 @@ route.post('/signup',async(req,res)=>{
         const response=await newUser.save()
         console.log("data saved")
         const payload={
-            id:response.id,
-            username:response.username
+            _id:response._id,
+            name:response.name
         }
         console.log(JSON.stringify(payload))
         const token=generateToken(payload);
@@ -29,7 +29,7 @@ route.post('/signup',async(req,res)=>{
 
 
 
-route.post('/login',async(req,res)=>{
+route.post('/signin',async(req,res)=>{
     try{
         const {username,password}=req.body;
         if(!username||!password){
@@ -40,7 +40,7 @@ route.post('/login',async(req,res)=>{
             return res.status(401).json({error:"invalid data"})
         }
         const payload={
-            id:user.id,
+            _id:user._id,
             username:user.username
         }
         const token=generateToken(payload)

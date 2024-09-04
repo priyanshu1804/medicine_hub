@@ -1,29 +1,15 @@
 const mongoose = require('mongoose');
+const User = require('./user');
 const medicineSchema = new mongoose.Schema({
-
     name: {
         type: String,
         required: true
     },
-    expiry_date: {
-        type: Date,
-        required: true
+    salt:{
+        type:String
     },
-    salt: {
-        type: String,
-        required: true
-    },
-    quantity: {
-        type: Number,
-        required: true
-    },
-    contact: {
-        type: Number,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
+    donatedBy:{
+        type:String
     }
 });
 
