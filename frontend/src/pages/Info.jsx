@@ -10,7 +10,7 @@ export default function Info(){
     const [med,setMed] = useState({})
     useEffect(()=>{
         const fetch = async()=>{
-            const {data} = await axios.get(`https://medicine-hub-tau.vercel.app/medicine/info/${id}`,{
+            const {data} = await axios.get(`https://medicine-hub.onrender.com/medicine/info/${id}`,{
                 headers:{
                     Authorization:localStorage.getItem('token')
                 }
