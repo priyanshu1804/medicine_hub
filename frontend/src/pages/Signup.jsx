@@ -28,7 +28,7 @@ export default function Signup(){
                 <Inputbox label ={"Password"} placeholder={"12345"} set={setPassword}></Inputbox>
                 <div className="pt-4">
                     <Button label={"Sign up"} onPress={ async ()=>{
-                        const res =await axios.post("http://localhost:3000/user/signup",
+                        const res =await axios.post("https://medicine-hub-nu.vercel.app/user/signup",
                         {
                             name:name,
                             email:email,

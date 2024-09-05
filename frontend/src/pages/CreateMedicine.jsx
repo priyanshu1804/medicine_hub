@@ -35,7 +35,7 @@ export default function CreateMedicine(){
                 <Inputbox label ={"Salt"} placeholder={"Nacl"} set={setSalt}></Inputbox>
                 <div className="pt-4">
                     <Button label={"Add"} onPress={ async ()=>{
-                        const res =await axios.post("http://localhost:3000/medicine/",
+                        const res =await axios.post("https://medicine-hub-nu.vercel.app/medicine/",
                         {
                             name:name,
                             salt:salt
