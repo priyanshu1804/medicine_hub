@@ -20,7 +20,7 @@ const jwtAuthMiddleware=(req,res,next)=>{
         res.status(401).json({error:'invalid token'});
     }
 }
-
+require('dotenv').config();
 const generateToken=(userData)=>{
     return jwt.sign(userData,process.env.JWT_SECRET);
 }

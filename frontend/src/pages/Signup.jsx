@@ -16,8 +16,6 @@ export default function Signup(){
     const [password,setPassword] = useState("");
     const navigate = useNavigate();
 
-
-
     return <div className="bg-slate-500 h-screen flex justify-center">
         <div className="flex flex-col justify-center"> 
             <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
