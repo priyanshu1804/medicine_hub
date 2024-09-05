@@ -12,7 +12,7 @@ export default function Signin(){
 
     const handleSignin =async ()=>{
         console.log("hello1");
-        const res =await axios.post("https://medicine-hub-nu.vercel.app/api/v1/user/signin",
+        const res =await axios.post("http://medicine-hub-nu.vercel.app/api/v1/user/signin",
             {
                 username:username,
                 password:password
