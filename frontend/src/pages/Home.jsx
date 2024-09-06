@@ -5,6 +5,7 @@ import NavBar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
 
 export default function Home(){
+ 
   const [filter,setFilter] = useState("");
   const navigate = useNavigate();
   const [med,setMed] = useState([]);
@@ -12,7 +13,7 @@ export default function Home(){
     async function fetch(){
       
       try{
-        const {data} =await axios.get(`https://medicine-hub.onrender.com/medicine/all?filter=${filter}`,{
+        const {data} =await axios.get(`https://medicine-hub-alpha.vercel.app/medicine/all?filter=${filter}`,{
           headers:{
             Authorization:localStorage.getItem('token')
           }

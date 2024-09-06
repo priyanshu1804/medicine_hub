@@ -15,7 +15,7 @@ export default function Signup(){
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const navigate = useNavigate();
-
+   
     return <div className="bg-slate-500 h-screen flex justify-center">
         <div className="flex flex-col justify-center"> 
             <div className="rounded-lg bg-white w-80 text-center p-2 h-max px-4">
@@ -26,7 +26,7 @@ export default function Signup(){
                 <Inputbox label ={"Password"} placeholder={"12345"} set={setPassword}></Inputbox>
                 <div className="pt-4">
                     <Button label={"Sign up"} onPress={ async ()=>{
-                        const res =await axios.post("https://medicine-hub.onrender.com/user/signup",
+                        const res =await axios.post(`https://medicine-hub-alpha.vercel.app/user/signup`,
                         {
                             name:name,
                             email:email,

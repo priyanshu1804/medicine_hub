@@ -5,11 +5,12 @@ import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
 export default function Mymed(){
+ 
   const navigate = useNavigate();
   const [med,setMed] = useState([]);
   useEffect(()=>{
     async function fetch(){
-      const {data} =await axios.get("https://medicine-hub.onrender.com/medicine/my",{
+      const {data} =await axios.get(`https://medicine-hub-alpha.vercel.app/medicine/my`,{
         headers:{
           Authorization:localStorage.getItem('token')
         }

@@ -4,13 +4,14 @@ import { useNavigate, useSearchParams } from "react-router-dom"
 import Button from "../components/Button";
 
 export default function Info(){
+   
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const [med,setMed] = useState({})
     useEffect(()=>{
         const fetch = async()=>{
-            const {data} = await axios.get(`https://medicine-hub.onrender.com/medicine/info/${id}`,{
+            const {data} = await axios.get(`https://medicine-hub-alpha.vercel.app/medicine/info/${id}`,{
                 headers:{
                     Authorization:localStorage.getItem('token')
                 }

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function CreateMedicine(){
-
+   
     const [name,setName] = useState("");
     const [salt,setSalt] = useState("");
     const [password,setPassword] = useState("");
@@ -35,7 +35,7 @@ export default function CreateMedicine(){
                 <Inputbox label ={"Salt"} placeholder={"Nacl"} set={setSalt}></Inputbox>
                 <div className="pt-4">
                     <Button label={"Add"} onPress={ async ()=>{
-                        const res =await axios.post("https://medicine-hub-nu.vercel.app/medicine/",
+                        const res =await axios.post(`https://medicine-hub-alpha.vercel.app/medicine/`,
                         {
                             name:name,
                             salt:salt
