@@ -14,10 +14,6 @@
     {
       "src": "/medicine/(.*)",
       "dest": "/routes/medicineRoutes.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
     }
   ]
 }
