@@ -27,7 +27,7 @@ export default function CreateMedicine(){
         
             <div className="h-14 w-full flex flex-row-reverse pr-4 pt-4">
                 <div className="w-20 ">
-                    <Button label={"Home"} onPress={()=>navigate("/dashboard")}></Button>
+                    <Button label={"Home"} onPress={()=>navigate("/")}></Button>
                 </div>
             </div>
         <div className="flex flex-row justify-center mt-24"> 

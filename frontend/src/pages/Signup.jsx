@@ -33,7 +33,7 @@ export default function Signup(){
                             password:password
                         })
                         localStorage.setItem("token", "bearer "+res.data.token);
-                        navigate("/dashboard");
+                        navigate("/");
                     }}></Button>
                 </div>
                 <Bottom label ={"Already have an account?"} buttonText={"Signin"} to={'/signin'}></Bottom>
