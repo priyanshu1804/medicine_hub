@@ -58,8 +58,11 @@ router.put('/:medicineID',jwtAuthMiddleware, async (req, res)=>{
     }
 })
 
-router.delete('/:medicineID',jwtAuthMiddleware, async (req, res)=>{
+router.delete('/:medicineID', async (req, res)=>{
     try{
+        if(!(await checkDonerRole(req.user.id)))
+            return res.status(403).json({message: 'user does not have doner role'});
+        
         const medicineID = req.params.medicineID;
         const response = await Medicine.findByIdAndDelete(medicineID);
         if (!response) {
