@@ -13,7 +13,7 @@ export default function (){
                 <h1 className="text-4xl font-semibold text-center">Successfully Added !! </h1>
                 <div className="flex justify-center pt-3">
                     <div className="w-[28rem]">
-                        <Button label={"Home"} onPress={()=>navigate("/dashboard")}></Button>
+                        <Button label={"Home"} onPress={()=>navigate("/")}></Button>
                     </div>
 
                 </div>

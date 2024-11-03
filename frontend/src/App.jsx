@@ -5,12 +5,12 @@ import Signin from './pages/Signin';
 import CreateMedicine from './pages/CreateMedicine';
 import Mymed from './pages/Mymed';
 import Info from './pages/Info';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/';
 export default function App(){
   
   return (<BrowserRouter>
     <Routes>
-      <Route path ="/dashboard" element ={<Dashboard></Dashboard>}></Route>
+      <Route path ="/" element ={<Dashboard></>}></Route>
       <Route path ="/signup" element ={<Signup/>}></Route>
       <Route path ="/signin" element ={<Signin/>}></Route>
       <Route path ="/create" element ={<CreateMedicine/>}></Route>
